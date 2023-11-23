@@ -1,0 +1,113 @@
+///  return dans le render Infinite ///
+
+    <Animated.View style={[{opacity: animatedValue}, styles.component]}>
+        {
+            type == "video" ?
+            <Video
+                source={require('../../assets/selma-vid.mp4')}
+                rate={1.0}
+                volume={1.0}
+                isMuted={false}
+                resizeMode="cover"
+                shouldPlay
+                isLooping
+                style={styles.videoContainer}
+            />
+            :
+            <Image source={ require('../../assets/selma-picture.png') } 
+                style={styles.image}
+            />
+        }
+    </Animated.View>
+
+ /// return dans le render Feed  ///
+
+
+ return(
+
+    <TouchableWithoutFeedback onPress={on2Press}>
+        <View style={styles.phone}>
+            <StatusBarCustom backgroundColor="grey" display="default" />
+            <View style={styles.headerPosition}>
+                <Header
+                    back={false}
+                    bg="transparent"
+                    title="Find your love"
+                    goBack={() => handleRedirection("back", {}, navigation)}
+                    type="image"
+                />
+            </View>
+            <InfiniteScroll name={name} type={contentType} />
+            <View style={styles.rightButtons}>
+                <Ionicons
+                    onPress={handleLike}
+                    name={liked ? "ios-heart" : "ios-heart-outline"}
+                    size={50}
+                    color={liked ? "#E84C5C" : "#FFF"}
+                />
+                <Ionicons
+                    onPress={handleSwitchContent}
+                    name={
+                        contentType == "photo"
+                            ? "camera-outline"
+                            : "videocam-outline"
+                    }
+                    size={50}
+                    color="#FFF"
+                />
+                <Ionicons name="ellipsis-vertical" size={40} color="#FFF" />
+            </View>
+            <LinearGradient
+                colors={[
+                    "rgba(255,255,255,0)",
+                    "rgba(255,255,255,0.7)",
+                    "rgba(255,255,255,1)",
+                ]}
+                style={styles.gradientFade}
+            >
+                <View style={styles.imageNameAge}>
+                    <Image
+                        source={require("../../../assets/selma-pdp.png")}
+                        style={styles.image}
+                    />
+                    <Text
+                        style={styles.textNameAge}
+                        adjustsFontSizeToFit={true}
+                        numberOfLines={2}
+                    >
+                        Selma, 23
+                    </Text>
+                </View>
+            </LinearGradient>
+        </View>
+    </TouchableWithoutFeedback>
+ )
+
+
+
+        video: {
+        width: Dimensions.get("window").width,
+        height: "100%",
+    },
+
+    videoContainer: {
+        width: Dimensions.get("window").width,
+        height: "92%",
+        position: "absolute",
+        top: "8%",
+    },
+    component: {
+        backgroundColor: "#FFFFFFF",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    videoContainer: {
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").height,
+    },
+    image: {
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").height,
+        top: 0,
+        left: 0,
+    },
