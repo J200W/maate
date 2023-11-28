@@ -10,6 +10,7 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function Main({ navigation }) {
 
+
     const styleTab = StyleSheet.create({
         backgroundColor: "#FFF",
         paddingVertical: 5,
@@ -71,6 +72,7 @@ export default function Main({ navigation }) {
           ),
           tabBarIconStyle: tabBarStyle,
         }}
+        
       />
       <Tab.Screen
         name="Account"

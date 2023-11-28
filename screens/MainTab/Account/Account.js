@@ -15,6 +15,7 @@ import Header from "../../../components/Header";
 import AccountContent from "../../../components/Account/AccountContent";
 import handleRedirection from "../../../function/Handles";
 import handlePickImage from "../../../function/ImagePicker";
+import InfiniteLinearGradient from "../../../components/Feed/InfiniteLinearGradient";
 
 export default function Account({ navigation }) {
     const isFocused = useIsFocused();
@@ -24,6 +25,11 @@ export default function Account({ navigation }) {
     const [imageUri, setImageUri] = useState(null);
     const [type, setType] = useState(null);
     const [check, setCheck] = useState(false);
+    const linearGradientColor = [
+        "rgba(255,255,255,0)",
+        "rgba(255,255,255,0.7)",
+        "rgba(255,255,255,1)",
+    ];
 
     const handleSwitchContent = () => {
         if (contentType == "photo") {
@@ -51,6 +57,30 @@ export default function Account({ navigation }) {
     return (
         <View style={styles.phone}>
             {isFocused && <StatusBar backgroundColor="black" animated={true} />}
+            <AccountContent type={contentType} />
+            <View style={styles.rightButtons}>
+                <Ionicons
+                    onPress={handleSwitchContent}
+                    name={
+                        contentType == "photo"
+                            ? "camera-outline"
+                            : "videocam-outline"
+                    }
+                    size={55}
+                    color="#FFF"
+                />
+                <Ionicons
+                    onPress={handleSettings}
+                    name="md-settings-sharp"
+                    size={45}
+                    color="#FFF"
+                />
+            </View>
+            <InfiniteLinearGradient
+                linearGradientColor={linearGradientColor}
+                name={name}
+                age={23}
+            />
             <SafeAreaView style={styles.safeArea}>
                 <Header
                     back={false}
@@ -59,51 +89,6 @@ export default function Account({ navigation }) {
                     goBack={() => handleRedirection("back", {}, navigation)}
                     type="image"
                 />
-
-                <AccountContent type={contentType} />
-                <View style={styles.rightButtons}>
-                    <Ionicons
-                        onPress={handleSwitchContent}
-                        name={
-                            contentType == "photo"
-                                ? "camera-outline"
-                                : "videocam-outline"
-                        }
-                        size={55}
-                        color="#FFF"
-                    />
-                    <Ionicons
-                        onPress={handleSettings}
-                        name="md-settings-sharp"
-                        size={45}
-                        color="#FFF"
-                    />
-                </View>
-                <LinearGradient
-                    colors={[
-                        "rgba(255,255,255,0)",
-                        "rgba(255,255,255,0.7)",
-                        "rgba(255,255,255,1)",
-                    ]}
-                    style={styles.gradientFade}
-                >
-                    <TouchableOpacity
-                        onPress={handlePickPfp}
-                        style={styles.imageNameAge}
-                    >
-                        <Image
-                            source={require("../../../assets/jacob-pfp.png")}
-                            style={styles.image}
-                        />
-                        <Text
-                            style={styles.textNameAge}
-                            adjustsFontSizeToFit={true}
-                            numberOfLines={2}
-                        >
-                            {name}, 23
-                        </Text>
-                    </TouchableOpacity>
-                </LinearGradient>
             </SafeAreaView>
         </View>
     );
@@ -123,6 +108,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         marginTop: 10,
+        position: "absolute",
     },
 
     rightButtons: {

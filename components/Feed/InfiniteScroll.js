@@ -13,26 +13,31 @@ import { FlatList } from "react-native-gesture-handler";
 export default function InfiniteScroll(props) {
 
     const { name } = props;
+    const [doubleTaped, setDoubleTaped] = useState(false);
     const [array, setArray] = useState([
         {
             id: 1,
             video: require("../../assets/emily-vid.mp4"),
             image: require("../../assets/emily-picture.png"),
+            name: "Emily",
         },
         {
             id: 2,
             video: require("../../assets/lily-vid.mp4"),
             image: require("../../assets/lily-picture.png"),
+            name: "Lily",
         },
         {
             id: 3,
             video: require("../../assets/jacob-vid.mp4"),
             image: require("../../assets/jacob-picture.png"),
+            name: "Jacob",
         },
         {
             id: 4,
             video: require("../../assets/selma-vid.mp4"),
             image: require("../../assets/selma-picture.png"),
+            name: "Selma",
         },
     ]);
 
@@ -46,7 +51,7 @@ export default function InfiniteScroll(props) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [contentType, setContentType] = useState("video");
 
-    const [liked, setLiked] = useState(false);
+    
     const [lastPress, setLastPress] = useState(0);
 
     // HANDLE DOUBLE TAP
@@ -59,11 +64,10 @@ export default function InfiniteScroll(props) {
 
     const on2Press = () => {
         var delta = new Date().getTime() - lastPress;
-
         if (delta < 300) {
-            setLiked(true);
+            setDoubleTaped(true);    
+            console.log(doubleTaped);       
         }
-
         setLastPress(new Date().getTime());
     };
 
@@ -75,34 +79,35 @@ export default function InfiniteScroll(props) {
 
     // HANDLE FLATLIST
 
-
     const onViewableItemsChanged = useRef(({ viewableItems }) => {
+                    setDoubleTaped(false);
         if (viewableItems.length > 0) {
             const firstVisibleItem = viewableItems[0];
             setCurrentIndex(firstVisibleItem.index);
         }
     }).current;
-    
+
 
     const renderItem = ({ item, index }) => {
         const isCurrentItem = index === currentIndex;
 
         return (
-            <TouchableOpacity activeOpacity={1} onPress={on2Press}>
+            // <TouchableOpacity activeOpacity={1} onPress={on2Press}>
+            <TouchableOpacity activeOpacity={1}>
                 <InfiniteContent
                     item={item}
                     isCurrentItem={isCurrentItem}
                     type={contentType}
                 />
                 <InfiniteButtons
-                    setLiked={setLiked}
-                    liked={liked}
                     handleSwitchContent={handleSwitchContent}
                     contentType={contentType}
+                    // doubleTap={doubleTaped}
+                    // setDoubleTap={(d) => setDoubleTaped(d)}
                 />
                 <InfiniteLinearGradient
                     linearGradientColor={linearGradientColor}
-                    name={name}
+                    name={item.name}
                     age={23}
                 />
             </TouchableOpacity>
@@ -116,13 +121,15 @@ export default function InfiniteScroll(props) {
             extraData={array}
             onViewableItemsChanged={onViewableItemsChanged}
             viewabilityConfig={{
-                itemVisiblePercentThreshold: 75,
+                itemVisiblePercentThreshold: 50,
                 minimumViewTime: 1000,
             }}
             pagingEnabled={true}
             keyExtractor={(item, index) => index.toString()}
             style={styles.videoFlatList}
             ref={flatListRef}
+            snapToAlignment="center"
+            decelerationRate="fast"
         />
     );
 }

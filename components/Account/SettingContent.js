@@ -13,7 +13,7 @@ import RadioButtonSetting from "./RadioButtonSetting";
 import Toast from "react-native-toast-message";
 import handleShowToast from "../Toast";
 import toastConfig from "../CustomToast";
-import * as Location from "expo-location";
+// import * as Location from "expo-location";
 import handleRedirection from "../../function/Handles";
 
 export default function SettingContent({ navigateTo }) {
@@ -26,31 +26,32 @@ export default function SettingContent({ navigateTo }) {
     const [city, setCity] = useState(null);
     const [country, setCountry] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                let { status } =
-                    await Location.requestBackgroundPermissionsAsync();
-                if (status !== "granted") {
-                    console.log("Permission to access location was denied");
-                }
-                let position = await Location.getCurrentPositionAsync({});
-                let area = await Location.reverseGeocodeAsync({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                });
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             let { status } =
+    //                 await Location.requestBackgroundPermissionsAsync();
+    //             if (status !== "granted") {
+    //                 console.log("Permission to access location was denied");
+    //             }
 
-                setLocation(position);
-                setCity(area[0].city);
-                setCountry(area[0].country);
-                console.log(area[0].city, area[0].country);
-            } catch (error) {
-                // Handle errors appropriately
-                console.error(error);
-            }
-        };
-        fetchData();
-    }, []);
+    //             let position = await Location.getLastKnownPositionAsync({});
+    //             let area = await Location.reverseGeocodeAsync({
+    //                 latitude: position.coords.latitude,
+    //                 longitude: position.coords.longitude,
+    //             });
+    //             setLocation(position);
+    //             setCity(area[0].city);
+    //             setCountry(area[0].country);
+    //             console.log(area[0].city, area[0].country);
+                
+    //         } catch (error) {
+    //             // Handle errors appropriately
+    //             console.error(error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, []);
 
     return (
         <ScrollView style={styles.listSetting}>
@@ -83,12 +84,12 @@ export default function SettingContent({ navigateTo }) {
                         onChange={(values) => setAgeRange(values)}
                     />
                 </View>
-                <Text style={styles.titleSubSection}>Location</Text>
+                {/* <Text style={styles.titleSubSection}>Location</Text>
                 <TouchableOpacity style={styles.location}>
                     <Text style={styles.locationText}>
                         {city}, {country}
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <Text style={styles.titleSubSection}>Distance (in miles)</Text>
                 <View style={styles.slider}>
                     <Slider

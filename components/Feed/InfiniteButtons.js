@@ -1,20 +1,25 @@
 import { View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function InfiniteButtons({
-    setLiked,
-    liked,
     handleSwitchContent,
     contentType,
+    doubleTap,
+    setDoubleTap,
 }) {
-    
+    const [liked, setLiked] = useState(false);
+
     // HANDLE LIKE
+
+    // useEffect(() => {
+    //     if (doubleTap) setLiked(true);
+    // }, [doubleTap]);
 
     const handleLike = () => {
         setLiked(!liked);
-    }
-    
+    };
+
     return (
         <View style={styles.rightButtons}>
             <Ionicons

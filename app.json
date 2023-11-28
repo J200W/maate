@@ -7,5 +7,8 @@
       "**/*"
     ]
   },
-  "name": "maate"
+  "name": "maate",
+  "android": {
+    "permissions": ["ACCESS_BACKGROUND_LOCATION"]
+  }
 }
