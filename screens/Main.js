@@ -72,7 +72,6 @@ export default function Main({ navigation }) {
           ),
           tabBarIconStyle: tabBarStyle,
         }}
-        
       />
       <Tab.Screen
         name="Account"

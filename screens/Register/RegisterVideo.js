@@ -11,6 +11,7 @@ import handleShowToast from "../../components/Toast";
 import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
 import handleVideoPicker from "../../function/VideoPicker";
+import { scaleFont } from "../../function/Font";
 
 export default function RegisterDate({ navigation }) {
     const [video, setVideo] = useState(null);
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(50),
         letterSpacing: 2,
         width: "80%",
         marginVertical: "10%",
@@ -103,8 +104,8 @@ const styles = StyleSheet.create({
     },
 
     subTitle: {
-        fontSize: 17,
-        fontWeight: "500",
+        fontSize: scaleFont(16),
+        fontWeight: "400",
         color: "#AAA",
         width: "80%",
         marginBottom: "10%",

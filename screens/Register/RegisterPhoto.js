@@ -10,6 +10,7 @@ import ImagePickerComp from "../../components/Register/ImagePickerComp";
 import handleShowToast from "../../components/Toast";
 import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
+import { scaleFont } from "../../function/Font";
 
 export default function RegisterDate({ navigation }) {
     const [image, setImage] = useState(null);
@@ -70,16 +71,17 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(45),
         letterSpacing: 2,
         width: "80%",
-        marginVertical: "10%",
+        marginTop: "10%",
+        marginBottom: "5%",
         textAlign: "center",
     },
 
     subTitle: {
-        fontSize: 17,
-        fontWeight: "500",
+        fontSize: scaleFont(16),
+        fontWeight: "400",
         color: "#AAA",
         width: "80%",
         marginBottom: "10%",

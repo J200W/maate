@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { scaleFont } from "../../function/Font";
 
 export default function HeaderChat(props) {
 
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 12,
+        fontSize: scaleFont(12),
         fontWeight: "bold",
         color: "#000",
     },

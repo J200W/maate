@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { scaleFont } from "../../function/Font";
 
 export default function Message(props) {
     const { message, type, time } = props;
@@ -46,10 +47,10 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
     },
     messageText: {
-        fontSize: 18,
+        fontSize: scaleFont(18),
     },
     messageTime: {
-        fontSize: 10,
+        fontSize: scaleFont(12),
         fontWeight: "bold",
         marginTop: 5,
     },

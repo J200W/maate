@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, {useState} from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
+import { scaleFont } from "../function/Font";
 
 export default function ButtonComp(props) {
 
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     },
 
     buttonText: {
-        fontSize: 20,
+        fontSize: scaleFont(15),
         textAlign: "center",
         fontWeight: "bold",
     },

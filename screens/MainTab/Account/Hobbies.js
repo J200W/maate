@@ -10,6 +10,7 @@ import hobbiesList from "../../../function/HobbiesList";
 import handleShowToast from "../../../components/Toast";
 import toastConfig from "../../../components/CustomToast";
 import handleRedirection from "../../../function/Handles";
+import { scaleFont } from "../../../function/Font";
 
 export default function Hobbies({ navigation }) {
     const [hobbies, setHobbies] = useState([]);
@@ -39,7 +40,7 @@ export default function Hobbies({ navigation }) {
 
     return (
         <View style={styles.phone}>
-            <StatusBarCustom backgroundColor="gray" display="default" />
+            <StatusBarCustom backgroundColor="grey" display="default" />
             <View style={styles.headerPosition}>
                 <Header
                     title=""
@@ -86,14 +87,14 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(60),
         letterSpacing: 2,
         width: "80%",
         marginTop: "10%",
     },
 
     subTitle: {
-        fontSize: 16,
+        fontSize: scaleFont(20),
         fontWeight: "500",
         color: "#AAA",
         width: "80%",
@@ -149,11 +150,11 @@ const styles = StyleSheet.create({
         margin: 3,
     },
     label: {
-        fontSize: 15,
+        fontSize: scaleFont(15),
         color: "#AAAAAA",
     },
     labelSelected: {
-        fontSize: 15,
+        fontSize: scaleFont(15),
         color: "#FFFFFF",
     },
 });

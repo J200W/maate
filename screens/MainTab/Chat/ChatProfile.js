@@ -6,6 +6,7 @@ import handleRedirection from "../../../function/Handles";
 import ChatProfileContent from "../../../components/Chat/ChatProfileContent";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import { scaleFont } from "../../../function/Font";
 
 export default function ChatProfile({ navigation }) {
     const [name, setName] = useState("Emily");
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     },
 
     textNameAge: {
-        fontSize: 25,
+        fontSize: scaleFont(20),
         fontWeight: "bold",
         marginLeft: "5%",
         color: "#000",

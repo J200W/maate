@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { scaleFont } from '../function/Font';
 
 export default function RadioButton({ data, onSelect }) {
   const [userOption, setUserOption] = useState(null);
@@ -27,7 +28,6 @@ export default function RadioButton({ data, onSelect }) {
 
 const styles = StyleSheet.create({
     option: {
-        fontSize: 20,
         color: '#555555',
         textAlign: 'center',
     },
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
         margin: 20,
     },
     selectedText: {
-        fontSize: 20,
+        fontSize: scaleFont(17),
         textAlign: 'center',
         color: '#e84c5c',
     },
     unselectedText: {
-        fontSize: 20,
+        fontSize: scaleFont(17),
         textAlign: 'center',
         color: '#888888',
     }

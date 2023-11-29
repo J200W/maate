@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, Image, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { scaleFont } from "../../function/Font";
 
 export default function ChatBox(props) {
 
@@ -72,24 +73,24 @@ const styles = StyleSheet.create({
     },
 
     name: {
-        fontSize: 18,
+        fontSize: scaleFont(18),
         fontWeight: "bold",
         marginBottom: 5,
     },
 
     lastMessage: {
-        fontSize: 15,
+        fontSize: scaleFont(15),
         flexDirection: "row",
         width: "100%",
     },
 
     hours: {
-        fontSize: 15,
+        fontSize: scaleFont(15),
         color: "#AAA",
     },
 
     lastMessageText: { 
-        fontSize: 15,
+        fontSize: scaleFont(15),
         width: "90%",
         color: "#AAA",
     },

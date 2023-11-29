@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import Button from "../components/Button";
 import StatusBarCustom from "../components/StatusBarCustom";
+import { scaleFont } from "../function/Font";
 
 export default function Home({ navigation }) {
     
@@ -25,7 +26,7 @@ export default function Home({ navigation }) {
             </Text>
             <View style={styles.buttonList}>
                 <Button text="Log In" fill={true} onPress={() => handleRedirection("Login")}/>
-                <Button text="Sign Up" fill={false} onPress={() => handleRedirection("RegisterEmail")}/>
+                <Button text="Sign Up" fill={false} onPress={() => handleRedirection("RegisterVideo")}/>
             </View>
         </View>
     );
@@ -52,14 +53,14 @@ const styles = StyleSheet.create({
   },
 
   titleApp: {
-    fontSize: 40,
+    fontSize: scaleFont(30),
     fontWeight: "bold",
     marginTop: 20,
     marginBottom: 20,
   },
 
   subtitleApp: {
-    fontSize: 20,
+    fontSize: scaleFont(17),
     color: "#A6A6A6",
     marginBottom: 40,
     textAlign: "center",

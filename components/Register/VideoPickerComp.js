@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { Video } from 'expo-av';
+import { scaleFont } from "../../function/Font";
 
 export default function VideoPickerComp(props) {
 
@@ -68,10 +69,9 @@ const styles = StyleSheet.create({
         color: 'white', 
         textAlign:'center',
         fontWeight: "bold",
-        fontSize: 16,
+        fontSize: scaleFont(13),
     },
     buttonContainer:{
-        // space out equally the button
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         position: 'absolute',

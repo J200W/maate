@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { scaleFont } from "../../function/Font";
 
 export default function ChatInput({ setter, message, onSend }) {
     const [isFocused, setIsFocused] = useState(false);
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         maxHeight: 50,
         textAlign: "left",
-        fontSize: 18,
+        fontSize: scaleFont(18),
         justifyContent: "center",
         alignItems: "center",
         paddingVertical: 10,

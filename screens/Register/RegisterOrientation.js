@@ -10,6 +10,7 @@ import RadioButton from "../../components/RadioButton";
 import handleShowToast from "../../components/Toast";
 import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
+import { scaleFont } from "../../function/Font";
 
 export default function RegisterOrientation({ navigation }) {
     const [orientation, setOrientation] = useState(null);
@@ -63,14 +64,14 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 40,
+        fontSize: scaleFont(33),
         letterSpacing: 2,
         width: "80%",
         marginVertical: "10%",
     },
 
     subTitle: {
-        fontSize: 17,
+        fontSize: scaleFont(20),
         fontWeight: "500",
         color: "#AAA",
         width: "80%",
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         width: "75%",
         height: 60,
         textAlign: "center",
-        fontSize: 20,
+        fontSize: scaleFont(20),
         fontWeight: "bold",
     },
 });

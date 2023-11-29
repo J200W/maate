@@ -16,6 +16,7 @@ import toastConfig from "../components/CustomToast";
 import handleShowToast from "../components/Toast";
 import handleRedirection from "../function/Handles";
 import StatusBarCustom from "../components/StatusBarCustom";
+import { scaleFont } from "../function/Font";
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
         position: "absolute",
     },
     title: {
-        fontSize: 50,
+        fontSize: scaleFont(50),
         fontWeight: "400",
         color: "#171417",
         marginTop: "20%",
@@ -118,12 +119,12 @@ const styles = StyleSheet.create({
         width: "75%",
     },
     message: {
-        fontSize: 12,
+        fontSize: scaleFont(12),
         fontWeight: "500",
         color: "#666666",
     },
     register: {
-        fontSize: 12,
+        fontSize: scaleFont(12),
         fontWeight: "500",
         color: "#e84c5c",
     },

@@ -10,6 +10,7 @@ import Textinput from "../../components/Textinput";
 import handleShowToast from "../../components/Toast";
 import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
+import { scaleFont } from "../../function/Font";
 
 export default function RegisterName({ navigation }) {
     const [name, setName] = useState("");
@@ -67,15 +68,15 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(45),
         letterSpacing: 2,
         width: "80%",
         marginVertical: "10%",
     },
 
     subTitle: {
-        fontSize: 17,
-        fontWeight: "500",
+        fontSize: scaleFont(14),
+        fontWeight: "400",
         color: "#AAA",
         width: "80%",
         marginBottom: "10%",

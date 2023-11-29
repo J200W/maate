@@ -15,6 +15,7 @@ import handleShowToast from "../Toast";
 import toastConfig from "../CustomToast";
 // import * as Location from "expo-location";
 import handleRedirection from "../../function/Handles";
+import { scaleFont } from "../../function/Font";
 
 export default function SettingContent({ navigateTo }) {
     const [orientation, setOrientation] = useState("Women");
@@ -57,6 +58,10 @@ export default function SettingContent({ navigateTo }) {
         <ScrollView style={styles.listSetting}>
             <View style={styles.settingSection}>
                 <Text style={styles.titleSection}>Preferences</Text>
+                <Text style={styles.titleSubSection}>Change my hobbies</Text>
+                <TouchableOpacity style={styles.hobbies} onPress={navigateTo}>
+                    <Text style={styles.hobbiesText}>Netflix, Twitch, Reading, </Text>
+                </TouchableOpacity>
                 <Text style={styles.titleSubSection}>Interested In</Text>
                 <RadioButtonSetting
                     data={options}
@@ -73,12 +78,12 @@ export default function SettingContent({ navigateTo }) {
                             backgroundColor: "#FADBDE",
                             borderRadius: 10,
                             color: "#E84C5C",
-                            fontSize: 15,
+                            fontSize: scaleFont(15),
                             fontWeight: "bold",
                         }}
                         labelTextStyle={{
                             color: "#333",
-                            fontSize: 15,
+                            fontSize: scaleFont(15),
                             fontWeight: "bold",
                         }}
                         onChange={(values) => setAgeRange(values)}
@@ -101,20 +106,17 @@ export default function SettingContent({ navigateTo }) {
                             backgroundColor: "#FADBDE",
                             borderRadius: 10,
                             color: "#E84C5C",
-                            fontSize: 15,
+                            fontSize: scaleFont(15),
                             fontWeight: "bold",
                         }}
                         labelTextStyle={{
                             color: "#333",
-                            fontSize: 15,
+                            fontSize: scaleFont(15),
                             fontWeight: "bold",
                         }}
                         onChange={(values) => setDistance(values)}
                     />
                 </View>
-                <TouchableOpacity style={styles.hobbies} onPress={navigateTo}>
-                    <Text style={styles.hobbiesText}>Change my hobbies</Text>
-                </TouchableOpacity>
             </View>
             <View>
                 <Text style={styles.titleSection}>Notifications</Text>
@@ -141,12 +143,12 @@ const styles = StyleSheet.create({
     },
 
     titleSection: {
-        fontSize: 15,
+        fontSize: scaleFont(15),
         color: "#AAA",
     },
 
     titleSubSection: {
-        fontSize: 20,
+        fontSize: scaleFont(20),
         color: "#000",
         marginTop: 20,
     },
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
     },
 
     radioButton: {
-        fontSize: 12,
+        fontSize: scaleFont(12),
     },
 
     slider: {
@@ -180,7 +182,7 @@ const styles = StyleSheet.create({
     },
 
     locationText: {
-        fontSize: 15,
+        fontSize: scaleFont(15),
         color: "#E84C5C",
     },
 
@@ -196,9 +198,9 @@ const styles = StyleSheet.create({
     },
 
     hobbiesText: {
-        fontSize: 20,
+        fontSize: scaleFont(13),
         color: "#000",
-        paddingVertical: 10,
+        paddingVertical: 5,
         marginVertical: 10,
     },
 });

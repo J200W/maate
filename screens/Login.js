@@ -5,6 +5,7 @@ import StatusBarCustom from "../components/StatusBarCustom";
 import Header from "../components/Header";
 import Textinput from "../components/Textinput";
 import handleRedirection from "../function/Handles";
+import { scaleFont } from "../function/Font";
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(45),
         letterSpacing: 2,
         width: "80%",
         marginBottom: "10%",
@@ -99,12 +100,12 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     smallTextMessage: {
-        fontSize: 12,
+        fontSize: scaleFont(12),
         fontWeight: "500",
         color: "#666666",
     },
     smallTextLink: {
-        fontSize: 12,
+        fontSize: scaleFont(12),
         fontWeight: "500",
         color: "#e84c5c",
     },

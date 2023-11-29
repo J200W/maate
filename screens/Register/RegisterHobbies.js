@@ -11,6 +11,7 @@ import hobbiesList from "../../function/HobbiesList";
 import handleShowToast from "../../components/Toast";
 import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
+import { scaleFont } from "../../function/Font";
 
 export default function RegisterHobbies({ navigation }) {
     const [hobbies, setHobbies] = useState([]);
@@ -92,15 +93,15 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(47),
         letterSpacing: 2,
         width: "80%",
         marginTop: "10%",
     },
 
     subTitle: {
-        fontSize: 16,
-        fontWeight: "500",
+        fontSize: scaleFont(14),
+        fontWeight: "400",
         color: "#AAA",
         width: "80%",
         marginBottom: "10%",
@@ -167,11 +168,11 @@ const styles = StyleSheet.create({
         margin: 3,
     },
     label: {
-        fontSize: 15,
+        fontSize: scaleFont(13),
         color: "#AAAAAA",
     },
     labelSelected: {
-        fontSize: 15,
+        fontSize: scaleFont(13),
         color: "#FFFFFF",
     },
 });

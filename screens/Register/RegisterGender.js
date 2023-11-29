@@ -10,6 +10,7 @@ import RadioButton from "../../components/RadioButton";
 import handleShowToast from "../../components/Toast";
 import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
+import { scaleFont } from "../../function/Font";
 
 export default function RegisterGender({ navigation }) {
     const [gender, setGender] = useState(null);
@@ -67,18 +68,10 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 60,
+        fontSize: scaleFont(45),
         letterSpacing: 2,
         width: "80%",
         marginVertical: "10%",
-    },
-
-    subTitle: {
-        fontSize: 17,
-        fontWeight: "500",
-        color: "#AAA",
-        width: "80%",
-        marginBottom: "10%",
     },
 
     phone: {
@@ -115,19 +108,5 @@ const styles = StyleSheet.create({
         flex: 1,
         marginBottom: 50,
         zIndex: -1,
-    },
-
-    textInput: {
-        letterSpacing: 3,
-        borderWidth: 1,
-        borderColor: "#ddd",
-        padding: 10,
-        margin: 5,
-        borderRadius: 5,
-        width: "75%",
-        height: 60,
-        textAlign: "center",
-        fontSize: 20,
-        fontWeight: "bold",
     },
 });

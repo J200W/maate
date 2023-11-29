@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/core";
 import {
     StyleSheet,
-    Image,
     View,
-    Text,
-    TouchableOpacity,
     StatusBar,
     SafeAreaView,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import AccountContent from "../../../components/Account/AccountContent";
 import handleRedirection from "../../../function/Handles";
 import handlePickImage from "../../../function/ImagePicker";
+import handleVideoPicker from "../../../function/VideoPicker";
 import InfiniteLinearGradient from "../../../components/Feed/InfiniteLinearGradient";
+import { scaleFont } from "../../../function/Font";
 
 export default function Account({ navigation }) {
     const isFocused = useIsFocused();
     const [name, setName] = useState("Jacob");
     const [contentType, setContentType] = useState("video");
     const [image, setImage] = useState(null);
+    const [video, setVideo] = useState(null);
     const [imageUri, setImageUri] = useState(null);
     const [type, setType] = useState(null);
     const [check, setCheck] = useState(false);
@@ -31,6 +30,8 @@ export default function Account({ navigation }) {
         "rgba(255,255,255,1)",
     ];
 
+    // HANDLE SWITCH CONTENT TYPE (PHOTO OR VIDEO)
+
     const handleSwitchContent = () => {
         if (contentType == "photo") {
             setContentType("video");
@@ -39,19 +40,27 @@ export default function Account({ navigation }) {
         }
     };
 
+    // HANDLE SETTINGS
+
     const handleSettings = () => {
         handleRedirection("Settings", {}, navigation);
     };
 
-    const handlePickPfp = async () => {
-        await handlePickImage(setImage, setImageUri, setType, setCheck).then(
-            () => {
-                console.log(imageUri ? "imageUri 👍" : "no imageURI");
-                console.log(image ? "image 👍" : "no image");
-                console.log(type ? "type 👍" : "no type");
-                console.log(check ? "check 👍" : "no check");
-            }
-        );
+    // UPDATE IMAGE AND VIDEO WHEN PICKED
+
+    useEffect(() => {
+        setVideo(video);
+        setImage(image);
+        console.log("video", video);
+        console.log("image", image);
+    }, [image, video]);
+
+    const handleEdit = async () => {
+        if (contentType == "photo") {
+            await handlePickImage(setImage, setImageUri, setType, setCheck);
+        } else {
+            await handleVideoPicker(setVideo);
+        }
     };
 
     return (
@@ -67,6 +76,12 @@ export default function Account({ navigation }) {
                             : "videocam-outline"
                     }
                     size={55}
+                    color="#FFF"
+                />
+                <Ionicons
+                    onPress={handleEdit}
+                    name="pencil-outline"
+                    size={45}
                     color="#FFF"
                 />
                 <Ionicons
@@ -117,11 +132,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         position: "absolute",
         right: 0,
-        top: "55%",
+        top: "40%",
         marginTop: 35,
         paddingRight: 35,
         paddingLeft: 35,
-        height: "20%",
+        height: "30%",
     },
 
     gradientFade: {
@@ -150,7 +165,7 @@ const styles = StyleSheet.create({
     },
 
     textNameAge: {
-        fontSize: 25,
+        fontSize: scaleFont(20),
         fontWeight: "bold",
         marginLeft: "5%",
         color: "#000",

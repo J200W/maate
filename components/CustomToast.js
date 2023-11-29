@@ -1,5 +1,6 @@
 // App.jsx
 import { BaseToast, ErrorToast } from 'react-native-toast-message';
+import { scaleFont } from '../function/Font';
 
 /*
   1. Create the config
@@ -15,8 +16,11 @@ const toastConfig = {
       style={{ borderLeftColor: 'pink' }}
       contentContainerStyle={{ paddingHorizontal: 15 }}
       text1Style={{
-        fontSize: 15,
+        fontSize: scaleFont(12),
         fontWeight: '100'
+      }}
+      text2Style={{
+        fontSize: scaleFont(10),
       }}
     />
   ),
@@ -29,10 +33,10 @@ const toastConfig = {
       {...props}
       style={{ zIndex: 1000, borderLeftColor: '#FC6F20'  }}
       text1Style={{
-        fontSize: 15
+        fontSize: scaleFont(12),
       }}
       text2Style={{
-        fontSize: 13
+        fontSize: scaleFont(10),
       }}
     />
   ),

@@ -13,7 +13,7 @@ export default function StatusBarCustom(props) {
             var color = "dark-content";
         }
     }
-    if (props.backgroundColor == "blackFeed"){
+    else if (props.backgroundColor == "blackFeed"){
         var backgroundColor = "#000";
         if (Platform.OS === 'ios') var color = "light-content";
     }

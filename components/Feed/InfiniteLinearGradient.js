@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Image } from "react-native";
+import { scaleFont } from '../../function/Font';
 
 export default function InfiniteLinearGradient({ linearGradientColor, name, age }) {
   return ( (
@@ -51,12 +52,6 @@ const styles = StyleSheet.create({
         marginRight: 20,
     },
 
-    textNameAge: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "#FFFFFF",
-    },
-
     imageNameAge: {
         flexDirection: "row",
         alignItems: "center",
@@ -66,7 +61,7 @@ const styles = StyleSheet.create({
         marginLeft: 35,
     },
     textNameAge: {
-        fontSize: 25,
+        fontSize: scaleFont(20),
         fontWeight: "bold",
         color: "#000",
         width: "65%",

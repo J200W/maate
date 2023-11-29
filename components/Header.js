@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, Platform, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { scaleFont } from "../function/Font";
 
 if (Platform.OS === 'ios') {
     var statusBarHeight = 18;
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         opacity: 0.95,
     },
     title: {
-        fontSize: 23,
+        fontSize: scaleFont(20),
         fontWeight: "bold",
         marginLeft: "5%",
     },
