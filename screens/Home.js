@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
             </Text>
             <View style={styles.buttonList}>
                 <Button text="Log In" fill={true} onPress={() => handleRedirection("Login")}/>
-                <Button text="Sign Up" fill={false} onPress={() => handleRedirection("RegisterVideo")}/>
+                <Button text="Sign Up" fill={false} onPress={() => handleRedirection("RegisterEmail")}/>
             </View>
         </View>
     );
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 
   titleApp: {
-    fontSize: scaleFont(30),
+    fontSize: scaleFont(35),
     fontWeight: "bold",
     marginTop: 20,
     marginBottom: 20,

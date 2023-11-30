@@ -3,6 +3,14 @@ import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
 import ChatBox from "./ChatBox";
 import { FlashList } from "@shopify/flash-list";
 
+var marginBottom = 0;
+if (Dimensions.get("window").height > 800) {
+    var marginBottom = 30;
+}
+else {
+    var marginBottom = 65;
+}
+
 export default function ChatList(props) {
 
     const n = 20;
@@ -44,8 +52,9 @@ const styles = StyleSheet.create({
     chatList: {
         flex: 1,
         width: "100%",
+        height: "100%",
         paddingHorizontal: "2%",
-        marginTop: "5%",
-        backgroundColor: "#FFF",
+        marginTop: 10,
+        marginBottom: marginBottom,
     },
 })

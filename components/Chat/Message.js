@@ -47,10 +47,10 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
     },
     messageText: {
-        fontSize: scaleFont(18),
+        fontSize: scaleFont(15),
     },
     messageTime: {
-        fontSize: scaleFont(12),
+        fontSize: scaleFont(9),
         fontWeight: "bold",
         marginTop: 5,
     },

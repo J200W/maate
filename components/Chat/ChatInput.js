@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         maxHeight: 50,
         textAlign: "left",
-        fontSize: scaleFont(18),
+        fontSize: scaleFont(15),
         justifyContent: "center",
         alignItems: "center",
         paddingVertical: 10,

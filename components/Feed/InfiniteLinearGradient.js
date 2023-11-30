@@ -1,14 +1,32 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Image } from "react-native";
-import { scaleFont } from '../../function/Font';
+import { scaleFont } from "../../function/Font";
 
-export default function InfiniteLinearGradient({ linearGradientColor, name, age }) {
-  return ( (
+export default function InfiniteLinearGradient({
+    linearGradientColor,
+    name,
+    age,
+    hobbies = [],
+}) {
+    const hobbiesList = [...hobbies];
+    var linearHeight = hobbiesList.length == 0 ? "30%" : "33%";
+
+    const toRender = [];
+
+    hobbiesList.map((hobby) => {
+        toRender.push(
+            <View style={styles.hobby}>
+                <Text style={styles.hobbyText}>{hobby}</Text>
+            </View>
+        );
+    });
+
+    return (
         <LinearGradient
             colors={linearGradientColor}
-            style={styles.gradientFade}
+            style={[styles.gradientFade, { height: linearHeight }]}
         >
             <View style={styles.gradientContent}>
                 <Image
@@ -23,9 +41,9 @@ export default function InfiniteLinearGradient({ linearGradientColor, name, age 
                     {name}, {age}
                 </Text>
             </View>
+            <View style={styles.hobbies}>{toRender}</View>
         </LinearGradient>
-    )
-  )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -33,9 +51,8 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         width: "100%",
-        height: "25%",
         zIndex: 1,
-        paddingHorizontal: "5%",
+        paddingHorizontal: "7.5%",
     },
 
     gradientContent: {
@@ -66,4 +83,27 @@ const styles = StyleSheet.create({
         color: "#000",
         width: "65%",
     },
-})
+
+    hobbies: {
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        flexWrap: "wrap",
+        alignItems: "center",
+        marginTop: 5,
+        width: "100%",
+    },
+
+    hobby: {
+        backgroundColor: "#e84c5c",
+        borderRadius: 20,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        marginRight: 10,
+        marginBottom: 10,
+    },
+
+    hobbyText: {
+        fontSize: scaleFont(13),
+        color: "#F6F6F6",
+    },
+});

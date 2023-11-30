@@ -23,12 +23,6 @@ export default function InfiniteButtons({
     return (
         <View style={styles.rightButtons}>
             <Ionicons
-                onPress={handleLike}
-                name={liked ? "ios-heart" : "ios-heart-outline"}
-                size={50}
-                color={liked ? "#E84C5C" : "#FFF"}
-            />
-            <Ionicons
                 onPress={handleSwitchContent}
                 name={
                     contentType == "photo"
@@ -37,6 +31,12 @@ export default function InfiniteButtons({
                 }
                 size={50}
                 color="#FFF"
+            />
+            <Ionicons
+                onPress={handleLike}
+                name={liked ? "ios-heart" : "ios-heart-outline"}
+                size={50}
+                color={liked ? "#E84C5C" : "#FFF"}
             />
             <Ionicons name="ellipsis-vertical" size={40} color="#FFF" />
         </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         position: "absolute",
         right: 0,
-        top: "40%",
+        top: "30%",
         marginTop: 35,
         paddingRight: 35,
         paddingLeft: 35,

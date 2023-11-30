@@ -16,9 +16,11 @@ export default function Main({ navigation }) {
         paddingVertical: 5,
         elevation: 0,
         width: "100%",
-        height: "auto",
+        height: 65,
         position: "absolute",
         bottom: 0,
+        borderTopLeftRadius: 300,
+        borderTopRightRadius: 300,
     });
 
     const tabBarStyle  = StyleSheet.create({

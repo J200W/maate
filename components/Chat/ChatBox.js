@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: "2%",
         height: 90,
         backgroundColor: "#FFF",
-        borderBottomWidth: 1,
-        borderBottomColor: "#F6F6F6",
+        borderTopWidth: 1,
+        borderTopColor: "#F6F6F6",
     },
 
     chatBoxLeft: {
@@ -73,24 +73,23 @@ const styles = StyleSheet.create({
     },
 
     name: {
-        fontSize: scaleFont(18),
+        fontSize: scaleFont(17),
         fontWeight: "bold",
         marginBottom: 5,
     },
 
     lastMessage: {
-        fontSize: scaleFont(15),
         flexDirection: "row",
         width: "100%",
     },
 
     hours: {
-        fontSize: scaleFont(15),
+        fontSize: scaleFont(13),
         color: "#AAA",
     },
 
     lastMessageText: { 
-        fontSize: scaleFont(15),
+        fontSize: scaleFont(13),
         width: "90%",
         color: "#AAA",
     },

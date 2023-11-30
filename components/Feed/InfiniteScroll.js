@@ -130,6 +130,7 @@ export default function InfiniteScroll(props) {
             ref={flatListRef}
             snapToAlignment="center"
             decelerationRate="fast"
+            bounces={false}
         />
     );
 }

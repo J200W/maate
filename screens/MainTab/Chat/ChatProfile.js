@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import StatusBarCustom from "../../../components/StatusBarCustom";
 import Header from "../../../components/Header";
 import handleRedirection from "../../../function/Handles";
@@ -34,7 +34,6 @@ export default function ChatProfile({ navigation }) {
             </View>
             <ChatProfileContent type={contentType} />
             <View style={styles.rightButtons}>
-                <Ionicons name="ellipsis-vertical" size={45} color="#FFF" />
                 <Ionicons
                     onPress={handleSwitchContent}
                     name={
@@ -45,6 +44,7 @@ export default function ChatProfile({ navigation }) {
                     size={55}
                     color="#FFF"
                 />
+                <Ionicons name="ellipsis-vertical" size={45} color="#FFF" />
             </View>
             <LinearGradient
                 colors={[
@@ -74,7 +74,7 @@ export default function ChatProfile({ navigation }) {
 
 const styles = StyleSheet.create({
     phone: {
-        backgroundColor: "#000",
+        backgroundColor: "#F6F6F6",
         flex: 1,
         flexDirection: "column",
     },
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         position: "absolute",
         right: 0,
-        top: "45%",
+        top: "35%",
         marginTop: 35,
         paddingRight: 35,
         paddingLeft: 35,

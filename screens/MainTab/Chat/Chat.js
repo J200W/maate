@@ -1,6 +1,6 @@
 import React from "react";
 import { useIsFocused } from "@react-navigation/core";
-import { StyleSheet, View, StatusBar, SafeAreaView } from "react-native";
+import { StyleSheet, View, StatusBar, SafeAreaView, Dimensions } from "react-native";
 import Header from "../../../components/Header";
 import ChatList from "../../../components/Chat/ChatList";
 import handleRedirection from "../../../function/Handles";
@@ -50,11 +50,5 @@ const styles = StyleSheet.create({
         zIndex: 1,
         flex: 1,
         flexDirection: "column",
-        marginTop: 10,
-    },
-
-    empty: {
-        height:"10%",
-        width: "100%",
     },
 });

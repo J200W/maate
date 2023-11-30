@@ -6,7 +6,7 @@ import {
     StatusBar,
     SafeAreaView,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import AccountContent from "../../../components/Account/AccountContent";
 import handleRedirection from "../../../function/Handles";
@@ -51,8 +51,6 @@ export default function Account({ navigation }) {
     useEffect(() => {
         setVideo(video);
         setImage(image);
-        console.log("video", video);
-        console.log("image", image);
     }, [image, video]);
 
     const handleEdit = async () => {
@@ -80,8 +78,8 @@ export default function Account({ navigation }) {
                 />
                 <Ionicons
                     onPress={handleEdit}
-                    name="pencil-outline"
-                    size={45}
+                    name="pencil"
+                    size={50}
                     color="#FFF"
                 />
                 <Ionicons
@@ -95,6 +93,7 @@ export default function Account({ navigation }) {
                 linearGradientColor={linearGradientColor}
                 name={name}
                 age={23}
+                hobbies={["Skating", "Music", "Sport", "Cinema", "Travel"]}
             />
             <SafeAreaView style={styles.safeArea}>
                 <Header
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         position: "absolute",
         right: 0,
-        top: "40%",
+        top: "30%",
         marginTop: 35,
         paddingRight: 35,
         paddingLeft: 35,

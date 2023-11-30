@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
 
     headerText: {
-        fontSize: scaleFont(12),
+        fontSize: scaleFont(10),
         fontWeight: "bold",
         color: "#000",
     },
