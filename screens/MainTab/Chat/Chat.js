@@ -1,6 +1,12 @@
 import React from "react";
 import { useIsFocused } from "@react-navigation/core";
-import { StyleSheet, View, StatusBar, SafeAreaView, Dimensions } from "react-native";
+import {
+    StyleSheet,
+    View,
+    StatusBar,
+    SafeAreaView,
+    Dimensions,
+} from "react-native";
 import Header from "../../../components/Header";
 import ChatList from "../../../components/Chat/ChatList";
 import handleRedirection from "../../../function/Handles";
@@ -17,38 +23,36 @@ export default function Chat({ navigation }) {
 
     return (
         <View style={styles.phone}>
-            {isFocused && <StatusBar backgroundColor="#fff" animated={true} barStyle="dark-content" />}
-            <SafeAreaView style={styles.safeArea}>
-                <Header
-                    back={false}
-                    bg="transparent"
-                    title="Chat"
-                    goBack={() => handleRedirection("back", {}, navigation)}
-                    type="menu"
-                />
+            <>
+                {isFocused && <StatusBar backgroundColor="black" animated={true} />}
+                <SafeAreaView style={styles.safeArea}>
+                    <Header
+                        back={false}
+                        bg="transparent"
+                        title="Chat"
+                        goBack={() => handleRedirection("back", {}, navigation)}
+                        type="menu"
+                    />
+                </SafeAreaView>
                 <ChatList
-                    navigateToProfile={handleClickProfile}
-                    navigateToChat={handleClickChat}
-                    uid={1}
+                    navigateToProfile={(i) => handleClickProfile(i)}
+                    navigateToChat={(i) => handleClickChat(i)}
                 />
-            </SafeAreaView>
-
+            </>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     phone: {
-        backgroundColor: "#FFF",
         flex: 1,
-        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#FFFF",
     },
 
-    safeArea: {
-        top: 0,
+    headerPosition: {
+        marginTop: 8,
         width: "100%",
-        zIndex: 1,
-        flex: 1,
-        flexDirection: "column",
     },
 });

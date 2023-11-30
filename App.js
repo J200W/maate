@@ -156,7 +156,7 @@ export default function App() {
                 <Stack.Screen
                     name="Settings"
                     component={Settings}
-                    options={{ header: header, cardStyleInterpolator: forFade }}
+                    options={{ header: header, cardStyleInterpolator: forSlide }}
                 />
 
                 {/* Feed Screen */}
@@ -176,13 +176,13 @@ export default function App() {
                 <Stack.Screen
                     name="ChatRoom"
                     component={ChatRoom}
-                    options={{ header: header, cardStyleInterpolator: forFade }}
+                    options={{ header: header, cardStyleInterpolator: forSlide }}
                 />
 
                 <Stack.Screen
                     name="ChatProfile"
                     component={ChatProfile}
-                    options={{ header: header, cardStyleInterpolator: forFade }}
+                    options={{ header: header, cardStyleInterpolator: forSlide }}
                 />
 
                 {/* Account Screen */}
@@ -196,7 +196,7 @@ export default function App() {
                 <Stack.Screen
                     name="Hobbies"
                     component={Hobbies}
-                    options={{ header: header, cardStyleInterpolator: forFade }}
+                    options={{ header: header, cardStyleInterpolator: forSlide }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

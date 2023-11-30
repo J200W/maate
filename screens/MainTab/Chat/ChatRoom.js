@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import {
     StyleSheet,
-    Text,
     View,
-    Dimensions,
     ScrollView,
-    BackHandler,
 } from "react-native";
 import StatusBarCustom from "../../../components/StatusBarCustom";
 import HeaderChat from "../../../components/Chat/HeaderChat";
@@ -85,6 +82,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFF",
         alignItems: "center",
         justifyContent: "center",
+        height: "100%",
     },
     headerPosition: {
         top: 0,

@@ -15,9 +15,9 @@ export default function InfiniteLinearGradient({
 
     const toRender = [];
 
-    hobbiesList.map((hobby) => {
+    hobbiesList.map((hobby, index) => {
         toRender.push(
-            <View style={styles.hobby}>
+            <View style={styles.hobby} key={index}>
                 <Text style={styles.hobbyText}>{hobby}</Text>
             </View>
         );

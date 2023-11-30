@@ -7,6 +7,7 @@ var marginBottom = 0;
 if (Dimensions.get("window").height > 800) {
     var marginBottom = 30;
 }
+
 else {
     var marginBottom = 65;
 }
