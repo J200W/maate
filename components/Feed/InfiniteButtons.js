@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState, useEffect } from "react";
+import AnimatedButton from "./AnimatedButton";
 
 export default function InfiniteButtons({
     handleSwitchContent,
@@ -8,8 +9,6 @@ export default function InfiniteButtons({
     doubleTap,
     setDoubleTap,
 }) {
-    const [liked, setLiked] = useState(false);
-
     // HANDLE LIKE
 
     // useEffect(() => {
@@ -22,21 +21,22 @@ export default function InfiniteButtons({
 
     return (
         <View style={styles.rightButtons}>
-            <Ionicons
-                onPress={handleSwitchContent}
-                name={
-                    contentType == "photo"
-                        ? "camera-outline"
-                        : "videocam-outline"
-                }
-                size={50}
+
+            <AnimatedButton
+                name="videocam-outline"
+                selName="camera-outline"
                 color="#FFF"
-            />
-            <Ionicons
-                onPress={handleLike}
-                name={liked ? "ios-heart" : "ios-heart-outline"}
+                selColor="#FFF"
                 size={50}
-                color={liked ? "#E84C5C" : "#FFF"}
+                onPress={handleSwitchContent}
+            />
+
+            <AnimatedButton
+                name="heart-outline"
+                selName="heart"
+                color="#FFF"
+                selColor="#e84c5c"
+                size={50}
             />
             <Ionicons name="ellipsis-vertical" size={40} color="#FFF" />
         </View>

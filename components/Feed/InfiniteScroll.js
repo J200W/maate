@@ -1,9 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import {
-    StyleSheet,
-    Dimensions,
-    TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 
 import InfiniteContent from "./InfiniteContent";
 import InfiniteButtons from "./InfiniteButtons";
@@ -11,7 +7,6 @@ import InfiniteLinearGradient from "./InfiniteLinearGradient";
 import { FlatList } from "react-native-gesture-handler";
 
 export default function InfiniteScroll(props) {
-
     const { name } = props;
     const [doubleTaped, setDoubleTaped] = useState(false);
     const [array, setArray] = useState([
@@ -49,9 +44,8 @@ export default function InfiniteScroll(props) {
 
     const flatListRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [contentType, setContentType] = useState("video");
+    const [contentType, setContentType] = useState("photo");
 
-    
     const [lastPress, setLastPress] = useState(0);
 
     // HANDLE DOUBLE TAP
@@ -65,8 +59,8 @@ export default function InfiniteScroll(props) {
     const on2Press = () => {
         var delta = new Date().getTime() - lastPress;
         if (delta < 300) {
-            setDoubleTaped(true);    
-            console.log(doubleTaped);       
+            setDoubleTaped(true);
+            console.log(doubleTaped);
         }
         setLastPress(new Date().getTime());
     };
@@ -80,13 +74,12 @@ export default function InfiniteScroll(props) {
     // HANDLE FLATLIST
 
     const onViewableItemsChanged = useRef(({ viewableItems }) => {
-                    setDoubleTaped(false);
         if (viewableItems.length > 0) {
             const firstVisibleItem = viewableItems[0];
             setCurrentIndex(firstVisibleItem.index);
         }
+        console.log(viewableItems);
     }).current;
-
 
     const renderItem = ({ item, index }) => {
         const isCurrentItem = index === currentIndex;

@@ -1,19 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Dimensions, SafeAreaView } from "react-native";
 import ChatBox from "./ChatBox";
 import { FlashList } from "@shopify/flash-list";
 
 var marginBottom = 0;
 if (Dimensions.get("window").height > 800) {
     var marginBottom = 30;
-}
-
-else {
+} else {
     var marginBottom = 65;
 }
 
 export default function ChatList(props) {
-
     const n = 20;
 
     const chatList = [];
@@ -27,12 +24,18 @@ export default function ChatList(props) {
 
     const renderItem = ({ item }) => {
         return (
-            <ChatBox navigateToProfile={(i) => props.navigateToProfile(i)} navigateToChat={(i) => props.navigateToChat(i)} connected={item.connected} key={item.id} id={item.id} />
+            <ChatBox
+                navigateToProfile={(i) => props.navigateToProfile(i)}
+                navigateToChat={(i) => props.navigateToChat(i)}
+                connected={item.connected}
+                key={item.id}
+                id={item.id}
+            />
         );
-    }
+    };
 
     return (
-        <View style={styles.chatList}>
+        <SafeAreaView style={styles.chatList}>
             <FlashList
                 data={chatList}
                 renderItem={renderItem}
@@ -45,7 +48,7 @@ export default function ChatList(props) {
                 contentContainerStyle={styles.contentContainer}
                 estimatedItemSize={Dimensions.get("window").height}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -58,4 +61,4 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: marginBottom,
     },
-})
+});

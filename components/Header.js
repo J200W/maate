@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         borderBottomColor: "#EEEEEE",
         paddingHorizontal: "10%",
         backgroundColor: "#F6F6F6",
-        opacity: 0.95,
     },
     title: {
         fontSize: scaleFont(20),

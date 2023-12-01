@@ -99,7 +99,7 @@ export default function Account({ navigation }) {
                 <Header
                     back={false}
                     bg="transparent"
-                    title="Account"
+                    title="My Account"
                     goBack={() => handleRedirection("back", {}, navigation)}
                     type="image"
                 />

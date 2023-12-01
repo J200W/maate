@@ -24,19 +24,22 @@ export default function Chat({ navigation }) {
     return (
         <View style={styles.phone}>
             <>
-                {isFocused && <StatusBar backgroundColor="black" animated={true} />}
+                {isFocused && (
+                    <StatusBar backgroundColor="black" animated={true} />
+                )}
                 <SafeAreaView style={styles.safeArea}>
                     <Header
                         back={false}
-                        bg="transparent"
-                        title="Chat"
+                        bg="white"
+                        title="Maates"
                         goBack={() => handleRedirection("back", {}, navigation)}
                         type="menu"
                     />
                 </SafeAreaView>
                 <ChatList
-                    navigateToProfile={(i) => handleClickProfile(i)}
-                    navigateToChat={(i) => handleClickChat(i)}
+                    navigateToProfile={handleClickProfile}
+                    navigateToChat={handleClickChat}
+                    uid={1}
                 />
             </>
         </View>
@@ -51,8 +54,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFF",
     },
 
-    headerPosition: {
-        marginTop: 8,
+    safeArea: {
+        top: 0,
         width: "100%",
+        backgroundColor: "white",
+        zIndex: 1,
+        flexDirection: "column",
+        marginTop: 10,
     },
 });
