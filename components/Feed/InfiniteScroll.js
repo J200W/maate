@@ -60,10 +60,14 @@ export default function InfiniteScroll(props) {
         var delta = new Date().getTime() - lastPress;
         if (delta < 300) {
             setDoubleTaped(true);
-            console.log(doubleTaped);
         }
         setLastPress(new Date().getTime());
     };
+
+    const setDoubleTapedFalse = () => {
+        setDoubleTaped(false);
+        console.log("double tap: " + doubleTaped)
+    }
 
     // HANDLE SWITCH CONTENT [PHOTO/VIDEO]
 
@@ -78,7 +82,7 @@ export default function InfiniteScroll(props) {
             const firstVisibleItem = viewableItems[0];
             setCurrentIndex(firstVisibleItem.index);
         }
-        console.log(viewableItems);
+        // console.log(viewableItems);
     }).current;
 
     const renderItem = ({ item, index }) => {
@@ -86,7 +90,7 @@ export default function InfiniteScroll(props) {
 
         return (
             // <TouchableOpacity activeOpacity={1} onPress={on2Press}>
-            <TouchableOpacity activeOpacity={1}>
+            <TouchableOpacity activeOpacity={1} onPress={on2Press}>
                 <InfiniteContent
                     item={item}
                     isCurrentItem={isCurrentItem}
@@ -95,8 +99,8 @@ export default function InfiniteScroll(props) {
                 <InfiniteButtons
                     handleSwitchContent={handleSwitchContent}
                     contentType={contentType}
-                    // doubleTap={doubleTaped}
-                    // setDoubleTap={(d) => setDoubleTaped(d)}
+                    doubleTap={doubleTaped}
+                    setDoubleTap={setDoubleTapedFalse}
                 />
                 <InfiniteLinearGradient
                     linearGradientColor={linearGradientColor}

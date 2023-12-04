@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/core";
-import {
-    StyleSheet,
-    View,
-    StatusBar,
-    SafeAreaView,
-} from "react-native";
+import { StyleSheet, View, StatusBar, SafeAreaView } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import AccountContent from "../../../components/Account/AccountContent";
@@ -62,47 +57,65 @@ export default function Account({ navigation }) {
     };
 
     return (
-        <View style={styles.phone}>
-            {isFocused && <StatusBar backgroundColor="black" animated={true} />}
-            <AccountContent type={contentType} />
-            <View style={styles.rightButtons}>
-                <Ionicons
-                    onPress={handleSwitchContent}
-                    name={
-                        contentType == "photo"
-                            ? "camera-outline"
-                            : "videocam-outline"
-                    }
-                    size={55}
-                    color="#FFF"
+        <View>
+            {isFocused && (
+                <StatusBar
+                    backgroundColor="#FFF"
+                    animated={true}
+                    barStyle="dark-content"
                 />
-                <Ionicons
-                    onPress={handleEdit}
-                    name="pencil"
-                    size={50}
-                    color="#FFF"
-                />
-                <Ionicons
-                    onPress={handleSettings}
-                    name="md-settings-sharp"
-                    size={45}
-                    color="#FFF"
-                />
-            </View>
-            <InfiniteLinearGradient
-                linearGradientColor={linearGradientColor}
-                name={name}
-                age={23}
-                hobbies={["Skating", "Music", "Sport", "Cinema", "Travel"]}
-            />
-            <SafeAreaView style={styles.safeArea}>
-                <Header
-                    back={false}
-                    bg="transparent"
-                    title="My Account"
-                    goBack={() => handleRedirection("back", {}, navigation)}
-                    type="image"
-                />
+            )}
+            <SafeAreaView style={styles.phone}>
+                <View>
+                    <View style={styles.header}>
+                        <Header
+                            back={false}
+                            bg="transparent"
+                            title="My Account"
+                            goBack={() =>
+                                handleRedirection("back", {}, navigation)
+                            }
+                            type="image"
+                        />
+                    </View>
+                    <AccountContent type={contentType} />
+                    <View style={styles.rightButtons}>
+                        <Ionicons
+                            onPress={handleSwitchContent}
+                            name={
+                                contentType == "photo"
+                                    ? "camera-outline"
+                                    : "videocam-outline"
+                            }
+                            size={55}
+                            color="#FFF"
+                        />
+                        <Ionicons
+                            onPress={handleEdit}
+                            name="pencil"
+                            size={50}
+                            color="#FFF"
+                        />
+                        <Ionicons
+                            onPress={handleSettings}
+                            name="md-settings-sharp"
+                            size={45}
+                            color="#FFF"
+                        />
+                    </View>
+                    <InfiniteLinearGradient
+                        linearGradientColor={linearGradientColor}
+                        name={name}
+                        age={23}
+                        hobbies={[
+                            "Skating",
+                            "Music",
+                            "Sport",
+                            "Cinema",
+                            "Travel",
+                        ]}
+                    />
+                </View>
             </SafeAreaView>
         </View>
     );
@@ -111,18 +124,17 @@ export default function Account({ navigation }) {
 const styles = StyleSheet.create({
     phone: {
         backgroundColor: "#000",
-        flex: 1,
+        width: "100%",
+        height: "100%",
         flexDirection: "column",
+        backgroundColor: "#F6F6F6",
     },
 
-    safeArea: {
-        top: 0,
+    header: {
         width: "100%",
-        zIndex: 1,
-        flex: 1,
-        flexDirection: "column",
-        marginTop: 10,
         position: "absolute",
+        top: 0,
+        zIndex: 1,
     },
 
     rightButtons: {

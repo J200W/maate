@@ -35,7 +35,7 @@ export default function ChatList(props) {
     };
 
     return (
-        <SafeAreaView style={styles.chatList}>
+        <View style={styles.chatList}>
             <FlashList
                 data={chatList}
                 renderItem={renderItem}
@@ -48,13 +48,12 @@ export default function ChatList(props) {
                 contentContainerStyle={styles.contentContainer}
                 estimatedItemSize={Dimensions.get("window").height}
             />
-        </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     chatList: {
-        flex: 1,
         width: "100%",
         height: "100%",
         paddingHorizontal: "2%",

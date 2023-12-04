@@ -1,19 +1,16 @@
-
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import Button from "../components/Button";
 import StatusBarCustom from "../components/StatusBarCustom";
 import { scaleFont } from "../function/Font";
 
 export default function Home({ navigation }) {
-    
     const handleRedirection = (page) => {
         navigation.navigate(page);
-    }
+    };
 
     return (
-        <View style={styles.phone}>
-            <StatusBarCustom backgroundColor="grey" display="default" />
+        <SafeAreaView style={styles.phone}>
             <Image
                 source={require("./../assets/maate-logo.png")}
                 style={styles.maateLogo}
@@ -25,51 +22,59 @@ export default function Home({ navigation }) {
                 <Text style={styles.word}> Connection!</Text>
             </Text>
             <View style={styles.buttonList}>
-                <Button text="Log In" fill={true} onPress={() => handleRedirection("Login")}/>
-                <Button text="Sign Up" fill={false} onPress={() => handleRedirection("RegisterEmail")}/>
+                <Button
+                    text="Log In"
+                    fill={true}
+                    onPress={() => handleRedirection("Login")}
+                />
+                <Button
+                    text="Sign Up"
+                    fill={false}
+                    onPress={() => handleRedirection("RegisterEmail")}
+                />
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-  statusBar: {
-    backgroundColor: "#000",
-  },
+    statusBar: {
+        backgroundColor: "#000",
+    },
 
-  phone: {
-    flex: 1,
-    backgroundColor: "#F6F6F6",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "10%",
-  },
+    phone: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#F6F6F6",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 
-  maateLogo: {
-    width: 200,
-    maxHeight: 200,
-    objectFit: "contain",
-    marginBottom: "5%",
-  },
+    maateLogo: {
+        width: 200,
+        maxHeight: 200,
+        objectFit: "contain",
+        marginBottom: "5%",
+    },
 
-  titleApp: {
-    fontSize: scaleFont(35),
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 20,
-  },
+    titleApp: {
+        fontSize: scaleFont(35),
+        fontWeight: "bold",
+        marginTop: 20,
+        marginBottom: 20,
+    },
 
-  subtitleApp: {
-    fontSize: scaleFont(17),
-    color: "#A6A6A6",
-    marginBottom: 40,
-    textAlign: "center",
-    margin: "auto",
-  },
+    subtitleApp: {
+        fontSize: scaleFont(17),
+        color: "#A6A6A6",
+        marginBottom: 40,
+        textAlign: "center",
+        margin: "auto",
+    },
 
-  word: {
-    color: "#E84C5C",
-  },
+    word: {
+        color: "#E84C5C",
+    },
 
     buttonList: {
         marginTop: 0,

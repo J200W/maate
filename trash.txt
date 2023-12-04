@@ -111,3 +111,71 @@
         top: 0,
         left: 0,
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <View>
+            <StatusBarCustom backgroundColor="black" display="default" />
+            <SafeAreaView style={styles.phone}>
+                <View style={styles.headerPosition}>
+                    <View style={styles.progressionBar}>
+                        <View style={styles.progressionBarFull}></View>
+                    </View>
+                    <Header
+                        title=""
+                        goBack={() => handleRedirection("back", {}, navigation)}
+                        type="menu"
+                    />
+                </View>
+                <View style={styles.screenContent}>
+                    <Text style={styles.title}>Email {"\n"}Address</Text>
+                    <Textinput placeholder="Email" setter={setEmail} />
+                    <Textinput
+                        isPassword={true}
+                        placeholder="Password"
+                        setter={setPassword}
+                    />
+                    <Textinput
+                        isPassword={true}
+                        placeholder="Confirm password"
+                        setter={setConfirmPassword}
+                    />
+                    <View style={styles.smallText}>
+                        <Text style={styles.smallTextMessage}>
+                            Already have an account ?
+                        </Text>
+                        <Text
+                            onPress={() => {
+                                navigation.navigate("Login", { email: "" });
+                            }}
+                            style={styles.smallTextLink}
+                        >
+                            {" "}
+                            Log In !
+                        </Text>
+                    </View>
+                    <View style={styles.buttonLogin}>
+                        <Button
+                            text="Next"
+                            fill={true}
+                            onPress={handleSubmit}
+                        />
+                    </View>
+                </View>
+                <Toast config={toastConfig} />
+            </SafeAreaView>
+        </View>

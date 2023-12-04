@@ -22,44 +22,60 @@ export default function Chat({ navigation }) {
     };
 
     return (
-        <View style={styles.phone}>
-            <>
-                {isFocused && (
-                    <StatusBar backgroundColor="black" animated={true} />
-                )}
-                <SafeAreaView style={styles.safeArea}>
-                    <Header
-                        back={false}
-                        bg="white"
-                        title="Maates"
-                        goBack={() => handleRedirection("back", {}, navigation)}
-                        type="menu"
-                    />
-                </SafeAreaView>
-                <ChatList
-                    navigateToProfile={handleClickProfile}
-                    navigateToChat={handleClickChat}
-                    uid={1}
+        <View>
+            {isFocused && (
+                <StatusBar
+                    backgroundColor="white"
+                    animated={true}
+                    barStyle="dark-content"
                 />
-            </>
+            )}
+            <SafeAreaView style={styles.phone}>
+                <View style={styles.phoneContent}>
+                    <View style={styles.header}>
+                        <Header
+                            back={false}
+                            bg="white"
+                            title="Maates"
+                            goBack={() =>
+                                handleRedirection("back", {}, navigation)
+                            }
+                            type="menu"
+                        />
+                    </View>
+                    <View style={styles.chatListView}>
+                        <ChatList
+                            navigateToProfile={handleClickProfile}
+                            navigateToChat={handleClickChat}
+                            uid={1}
+                        />
+                    </View>
+                </View>
+            </SafeAreaView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     phone: {
-        flex: 1,
         width: "100%",
         height: "100%",
-        backgroundColor: "#FFFF",
+        backgroundColor: "white",
     },
 
-    safeArea: {
-        top: 0,
+    phoneContent: {
+        flex: 1,
+    },
+
+    chatListView: {
+        
         width: "100%",
-        backgroundColor: "white",
+        height: "100%",
+    },
+
+    header: {
+        width: "100%",
+        top: 0,
         zIndex: 1,
-        flexDirection: "column",
-        marginTop: 10,
     },
 });

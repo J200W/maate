@@ -11,8 +11,9 @@ else {
 }
 
 export default function Header(props) {
-    var bg = "#F6F6F6"
+    var bg = "transparent"
     var goBack = "default"
+    var titleColor = "#FFF";
 
     if (props.type == "menu") {
         var buttonColor = "#AAAAAA";
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
         width: "100%",
         borderBottomColor: "#EEEEEE",
         paddingHorizontal: "10%",
-        backgroundColor: "#F6F6F6",
     },
     title: {
         fontSize: scaleFont(20),

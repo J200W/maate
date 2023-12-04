@@ -9,21 +9,21 @@ import Animated, {
     withSpring,
 } from "react-native-reanimated";
 
-export default function AnimatedButton({
-    name,
-    selName,
+export default function LikeButton({
     color,
     selColor,
     size,
     onPress = () => {},
+    like,
+    setLike
 }) {
-    const pressed = useSharedValue(0);
+    const pressed = useSharedValue(1);
 
 
     const handlePress = () => {
         pressed.value = withSpring(pressed.value ? 0 : 1);
-        onPress();
-        if (variable) setVariable(true);
+        console.log("pressed: " + pressed.value);
+        setLike( pressed.value == 1 ? true : false )
     };
 
     const outlineStyle = useAnimatedStyle(() => {
@@ -56,11 +56,11 @@ export default function AnimatedButton({
             <Animated.View
                 style={[StyleSheet.absoluteFillObject, outlineStyle]}
             >
-                <Ionicons name={name} size={size} color={color} />
+                <Ionicons name={"heart"} size={size} color={color} />
             </Animated.View>
 
             <Animated.View style={fillStyle}>
-                <Ionicons name={selName} size={size} color={selColor} />
+                <Ionicons name={"heart-outline"} size={size} color={selColor} />
             </Animated.View>
         </Pressable>
     );

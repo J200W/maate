@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/core";
-import { StyleSheet, SafeAreaView, View, Image, TouchableWithoutFeedback, StatusBar } from "react-native";
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Image,
+    TouchableWithoutFeedback,
+    StatusBar,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import InfiniteScroll from "../../../components/Feed/InfiniteScroll";
 import Header from "../../../components/Header";
@@ -11,38 +18,44 @@ export default function Feed({ navigation }) {
     const [age, setAge] = useState("18");
 
     return (
-        <View style={styles.phone}>
-            <>
-                {isFocused && <StatusBar backgroundColor="black" animated={true} />}
-                <InfiniteScroll name={name} />
-                <SafeAreaView style={styles.safeArea}>
-                    <Header
-                        back={false}
-                        bg="transparent"
-                        title="Find your love"
-                        goBack={() => handleRedirection("back", {}, navigation)}
-                        type="image"
-                    />
-                </SafeAreaView>
-            </>
+        <View>
+            {isFocused && (
+                <StatusBar
+                    backgroundColor="#FFF"
+                    animated={true}
+                    barStyle="dark-content"
+                />
+            )}
+            <SafeAreaView style={styles.phone}>
+                <View>
+                    <InfiniteScroll name={name} />
+                    <View style={styles.header}>
+                        <Header
+                            back={false}
+                            bg="transparent"
+                            title="Find your love"
+                            goBack={() =>
+                                handleRedirection("back", {}, navigation)
+                            }
+                            type="feed"
+                        />
+                    </View>
+                </View>
+            </SafeAreaView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     phone: {
-        backgroundColor: "#F6F6F6",
-        flex: 1,
-        flexDirection: "column",
+        width: "100%",
+        height: "100%",
     },
 
-    safeArea: {
-        top: 0,
-        position: "absolute",
+    header: {
         width: "100%",
+        position: "absolute",
+        top: 0,
         zIndex: 1,
-        flex: 1,
-        flexDirection: "column",
-        marginTop: 10,
     },
 });
