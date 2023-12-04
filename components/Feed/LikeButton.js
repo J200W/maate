@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet } from "react-native";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect } from "react";
 import Animated, {
     useSharedValue,
@@ -13,17 +13,21 @@ export default function LikeButton({
     color,
     selColor,
     size,
-    onPress = () => {},
-    like,
-    setLike
+    setLiked,
+    liked,
 }) {
     const pressed = useSharedValue(1);
 
+    useEffect(() => {
+        if (liked) {
+            pressed.value = withSpring(0);
+        }
+        else if (!liked) pressed.value = withSpring(1);
+    }, [liked]);
 
     const handlePress = () => {
         pressed.value = withSpring(pressed.value ? 0 : 1);
-        console.log("pressed: " + pressed.value);
-        setLike( pressed.value == 1 ? true : false )
+        setLiked(!liked)
     };
 
     const outlineStyle = useAnimatedStyle(() => {

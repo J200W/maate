@@ -7,26 +7,20 @@ import LikeButton from "./LikeButton";
 export default function InfiniteButtons({
     handleSwitchContent,
     contentType,
-    doubleTap,
-    setDoubleTap,
+    liked,
+    setLiked,
 }) {
     // HANDLE LIKE
 
-    const [liked, setLiked] = useState(false);
+    // useEffect(() => {
+    //     if (doubleTap) {
+    //         setLiked(true)
+    //         console.log("double tapped: " + liked);
+    //     };
+    // }, [doubleTap]);
 
-    useEffect(() => {
-        if (doubleTap) {
-            setLiked(true)
-            console.log("double tapped: " + liked);
-        };
-    }, [doubleTap]);
-
-    const handleLike = () => {
-        if (liked) {
-            setLiked(false);
-        }
-        else if (!liked) setLiked(true);
-        setDoubleTap();
+    const handleLike = (bool) => {
+        setLiked(bool);
     };
 
     return (
@@ -45,8 +39,8 @@ export default function InfiniteButtons({
                 color="#e84c5c"
                 selColor="#FFF"
                 size={50}
-                onPress={handleLike}
-                setLike={(bool) => setLiked(bool)}
+                setLiked={(bool) => handleLike(bool)}
+                liked={liked}
             />
             <Ionicons name="ellipsis-vertical" size={40} color="#FFF" />
         </View>

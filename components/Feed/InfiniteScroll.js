@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, Dimensions, TouchableOpacity, Animated, View } from "react-native";
 
 import InfiniteContent from "./InfiniteContent";
 import InfiniteButtons from "./InfiniteButtons";
@@ -36,6 +36,10 @@ export default function InfiniteScroll(props) {
         },
     ]);
 
+    const [liked, setLiked] = useState(false);
+    const [heartVisible, setHeartVisible] = useState(false);
+    const heartOpacity = useRef(new Animated.Value(0)).current;
+
     const linearGradientColor = [
         "rgba(255,255,255,0)",
         "rgba(255,255,255,0.7)",
@@ -59,15 +63,42 @@ export default function InfiniteScroll(props) {
     const on2Press = () => {
         var delta = new Date().getTime() - lastPress;
         if (delta < 300) {
-            setDoubleTaped(true);
+            setLiked(true);
+            showHeartAnimation();
+            console.log("double tapped !");
         }
         setLastPress(new Date().getTime());
     };
 
-    const setDoubleTapedFalse = () => {
-        setDoubleTaped(false);
-        console.log("double tap: " + doubleTaped)
-    }
+    const showHeartAnimation = () => {
+        setHeartVisible(true);
+        Animated.timing(heartOpacity, {
+            toValue: 1,
+            duration: 1000, // You can adjust the duration
+            useNativeDriver: false,
+        }).start(() => {
+            setHeartVisible(false);
+            heartOpacity.setValue(0);
+        });
+    };
+
+    const heartStyle = {
+        position: "absolute",
+        width: 100,
+        height: 100,
+        alignSelf: "center",
+        opacity: heartOpacity,
+        zIndex: 1000,
+    };
+
+    useEffect(() => {
+        console.log("liked: " + liked);
+    }, [liked]);
+
+    const handleLike = (bool) => {
+        setLiked(bool);
+        console.log("default tapped !");
+    };
 
     // HANDLE SWITCH CONTENT [PHOTO/VIDEO]
 
@@ -89,7 +120,6 @@ export default function InfiniteScroll(props) {
         const isCurrentItem = index === currentIndex;
 
         return (
-            // <TouchableOpacity activeOpacity={1} onPress={on2Press}>
             <TouchableOpacity activeOpacity={1} onPress={on2Press}>
                 <InfiniteContent
                     item={item}
@@ -99,8 +129,8 @@ export default function InfiniteScroll(props) {
                 <InfiniteButtons
                     handleSwitchContent={handleSwitchContent}
                     contentType={contentType}
-                    doubleTap={doubleTaped}
-                    setDoubleTap={setDoubleTapedFalse}
+                    liked={liked}
+                    setLiked={(bool) => handleLike(bool)}
                 />
                 <InfiniteLinearGradient
                     linearGradientColor={linearGradientColor}
@@ -112,23 +142,33 @@ export default function InfiniteScroll(props) {
     };
 
     return (
-        <FlatList
-            renderItem={renderItem}
-            data={array}
-            extraData={array}
-            onViewableItemsChanged={onViewableItemsChanged}
-            viewabilityConfig={{
-                itemVisiblePercentThreshold: 50,
-                minimumViewTime: 1000,
-            }}
-            pagingEnabled={true}
-            keyExtractor={(item, index) => index.toString()}
-            style={styles.videoFlatList}
-            ref={flatListRef}
-            snapToAlignment="center"
-            decelerationRate="fast"
-            bounces={false}
-        />
+        <View>
+            <FlatList
+                renderItem={renderItem}
+                data={array}
+                extraData={array}
+                onViewableItemsChanged={onViewableItemsChanged}
+                viewabilityConfig={{
+                    itemVisiblePercentThreshold: 50,
+                    minimumViewTime: 1000,
+                }}
+                pagingEnabled={true}
+                keyExtractor={(item, index) => index.toString()}
+                style={styles.videoFlatList}
+                ref={flatListRef}
+                snapToAlignment="center"
+                decelerationRate="fast"
+                bounces={false}
+            />
+            {heartVisible && (
+                <View style={styles.heartStyle}>
+                    <Animated.Image
+                        style={heartStyle}
+                        source={require("../../assets/like.png")} // Replace with your heart icon
+                    />
+                </View>
+            )}
+        </View>
     );
 }
 
@@ -151,5 +191,14 @@ const styles = StyleSheet.create({
         paddingLeft: 35,
         height: "30%",
         zIndex: 100,
+    },
+
+    heartStyle: {
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "100%",
+        alignSelf: "center",
+        position: "absolute",
     },
 });
