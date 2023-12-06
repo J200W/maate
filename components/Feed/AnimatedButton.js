@@ -23,7 +23,6 @@ export default function AnimatedButton({
     const handlePress = () => {
         pressed.value = withSpring(pressed.value ? 0 : 1);
         onPress();
-        if (variable) setVariable(true);
     };
 
     const outlineStyle = useAnimatedStyle(() => {

@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Dimensions, TouchableOpacity, Animated, View } from "react-native";
+import {
+    StyleSheet,
+    Dimensions,
+    TouchableOpacity,
+    Animated,
+    View,
+} from "react-native";
 
 import InfiniteContent from "./InfiniteContent";
 import InfiniteButtons from "./InfiniteButtons";
@@ -72,11 +78,28 @@ export default function InfiniteScroll(props) {
 
     const showHeartAnimation = () => {
         setHeartVisible(true);
-        Animated.timing(heartOpacity, {
-            toValue: 1,
-            duration: 1000, // You can adjust the duration
-            useNativeDriver: false,
-        }).start(() => {
+
+        Animated.sequence([
+            Animated.timing(heartOpacity, {
+                toValue: 1,
+                duration: 500, // You can adjust the duration
+                useNativeDriver: false,
+            }),
+            Animated.parallel([
+                Animated.spring(heartOpacity, {
+                    toValue: 0,
+                    friction: 4,
+                    tension: 40,
+                    useNativeDriver: false,
+                }),
+                Animated.timing(heartOpacity, {
+                    toValue: 0,
+                    duration: 500,
+                    delay: 300, // Adjust the delay for a bounce effect
+                    useNativeDriver: false,
+                }),
+            ]),
+        ]).start(() => {
             setHeartVisible(false);
             heartOpacity.setValue(0);
         });
@@ -88,6 +111,20 @@ export default function InfiniteScroll(props) {
         height: 100,
         alignSelf: "center",
         opacity: heartOpacity,
+        transform: [
+            {
+                translateY: heartOpacity.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 0],
+                }),
+            },
+            {
+                scale: heartOpacity.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 1],
+                }),
+            },
+        ],
         zIndex: 1000,
     };
 
@@ -196,9 +233,9 @@ const styles = StyleSheet.create({
     heartStyle: {
         justifyContent: "center",
         alignItems: "center",
-        width: "100%",
-        height: "100%",
         alignSelf: "center",
         position: "absolute",
+        top: Dimensions.get("window").height*0.45,
+        backgroundColor: "black",
     },
 });
