@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
                 <Button
                     text="Sign Up"
                     fill={false}
-                    onPress={() => handleRedirection("RegisterEmail")}
+                    onPress={() => handleRedirection("RegisterPhoto")}
                 />
             </View>
         </SafeAreaView>

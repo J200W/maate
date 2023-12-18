@@ -12,6 +12,10 @@ import toastConfig from "../../components/CustomToast";
 import handleRedirection from "../../function/Handles";
 import handleVideoPicker from "../../function/VideoPicker";
 import { scaleFont } from "../../function/Font";
+import {
+    createUserFirebase,
+    uploadFile,
+} from "../../backend/firebase/firebase.query";
 
 export default function RegisterDate({ navigation }) {
     const [video, setVideo] = useState(null);
@@ -29,9 +33,49 @@ export default function RegisterDate({ navigation }) {
                 "Please choose a video to continue"
             );
         } else {
-            const toReturn = { ...route.params, video: video };
-            console.log("RegisterVideo : " + JSON.stringify(toReturn));
-            handleRedirection("Home", toReturn, navigation);
+            fetch(video)
+                .then((r) => r.blob())
+                .then((blob) => {
+                    uploadFile(blob, "test@gmail.com", "vid");
+                })
+                .then(() => setVideo(null))
+                .catch((error) => {
+                    console.error(error);
+                    handleShowToast(
+                        "error",
+                        "Error",
+                        "An error occured, please try again"
+                    );
+                });
+            console.log(route.params.pdp)
+            fetch(route.params.pdp)
+                .then((r) => r.blob())
+                .then((blob) => {
+                    uploadFile(blob, "test@gmail.com", "pdp");
+                    console.log("blob... " + blob)
+                })
+                .then(() => setVideo(null))
+                .catch((error) => {
+                    console.error(error);
+                    handleShowToast(
+                        "error",
+                        "Error",
+                        "An error occured, please try again"
+                    );
+                });
+
+            const result = createUserFirebase(
+                route.params.email ? route.params.email : "emptymail@gmail.com",
+                route.params.password ? route.params.password : "testest1234",
+            );
+            if (result === null) {
+                return handleShowToast(
+                    "error",
+                    "Error",
+                    "An error occured, please try again"
+                );
+            }
+            return handleRedirection("Home", [], navigation);
         }
     };
 

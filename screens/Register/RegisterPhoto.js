@@ -28,7 +28,7 @@ export default function RegisterDate({ navigation }) {
             );
         } else {
             const toReturn = { ...route.params, image: imageUri, type: type };
-            console.log("RegisterPhoto : " + JSON.stringify(toReturn));
+            // console.log("RegisterPhoto : " + JSON.stringify(toReturn));
             handleRedirection("RegisterVideo", toReturn, navigation);
         }
     };
