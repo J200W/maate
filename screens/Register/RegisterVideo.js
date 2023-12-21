@@ -47,14 +47,16 @@ export default function RegisterDate({ navigation }) {
                         "An error occured, please try again"
                     );
                 });
-            console.log(route.params.pdp)
-            fetch(route.params.pdp)
+            fetch(route.params.image)
                 .then((r) => r.blob())
                 .then((blob) => {
                     uploadFile(blob, "test@gmail.com", "pdp");
-                    console.log("blob... " + blob)
+                    console.log("blob... " + blob);
                 })
-                .then(() => setVideo(null))
+                .then(() => {
+                    setVideo(null);
+                    return handleRedirection("Home", [], navigation);
+                })
                 .catch((error) => {
                     console.error(error);
                     handleShowToast(
@@ -63,19 +65,15 @@ export default function RegisterDate({ navigation }) {
                         "An error occured, please try again"
                     );
                 });
-
-            const result = createUserFirebase(
-                route.params.email ? route.params.email : "emptymail@gmail.com",
-                route.params.password ? route.params.password : "testest1234",
-            );
-            if (result === null) {
-                return handleShowToast(
-                    "error",
-                    "Error",
-                    "An error occured, please try again"
-                );
-            }
-            return handleRedirection("Home", [], navigation);
+            const userInfo = {
+                email: route.params.email,
+                password: route.params.password,
+                name: route.params.name,
+                birthdate: route.params.birthdate,
+                gender: route.params.gender,
+                orientation: route.params.orientation,
+                hobbies: route.params.hobbies,
+            };
         }
     };
 

@@ -1,9 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {
-    getStorage,
-    ref,
-} from "firebase/storage";
+    initializeAuth,
+    getAuth,
+    getReactNativePersistence,
+} from "firebase/auth";
+
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
+import { getStorage, ref } from "firebase/storage";
 import {
     REACT_APP_apiKey,
     REACT_APP_authDomain,
@@ -13,7 +16,6 @@ import {
     REACT_APP_appId,
     REACT_APP_measurementId,
 } from "@env";
-import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: REACT_APP_apiKey,
@@ -26,6 +28,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+// initialize Firebase Auth for that app immediately
+initializeAuth(app, {
+  persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});
+
 const storage = getStorage(app);
 const storageRef = ref(storage);
 const pictures = ref(storageRef, "pdp");
